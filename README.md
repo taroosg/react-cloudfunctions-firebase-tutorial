@@ -737,9 +737,9 @@ $ firebase deploy
 
 ## まとめ
 
-- CloudFunctions最高！
-- React最高！
-- JavaScript讃歌！！
+- Fiebase関連はCloudFunctionsに任せる！
+- Reactはhttpリクエスト送るだけ！
+- React側のFirebase関連のファイルは削除してOK！
 
 ---
 
