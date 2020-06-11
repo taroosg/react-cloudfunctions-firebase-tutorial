@@ -318,22 +318,22 @@ app.use(cors());
 
 // get all items
 app.get('/', async (req, res, next) => {
-  res.json('todo get endpoint')
+  res.send('todo get endpoint')
 });
 
 // post item
 app.post('/', async (req, res, next) => {
-  res.json('todo post endpoint')
+  res.send('todo post endpoint')
 });
 
 // update item
 app.put('/:id', async (req, res, next) => {
-  res.json('todo put endpoint')
+  res.send('todo put endpoint')
 });
 
 // delete item
 app.delete('/:id', async (req, res, next) => {
-  res.json('todo delete endpoint')
+  res.send('todo delete endpoint')
 });
 
 const api = functions.https.onRequest(app);
@@ -360,7 +360,7 @@ app.get('/', async (req, res, next) => {
         data: x.data()
       };
     })
-    res.json(todos);
+    res.send(todos);
   } catch (e) {
     next(e);
   }
@@ -552,7 +552,7 @@ app.post('/', async (req, res, next) => {
       throw new Error('Data is blank');
     }
     const ref = await db.collection('todos').add(postData);
-    res.json({
+    res.send({
       id: ref.id,
       data: postData,
     });
@@ -636,8 +636,7 @@ app.put('/:id', async (req, res, next) => {
       .collection('todos')
       .doc(id)
       .update(newData);
-    console.log(ref);
-    res.json({
+    res.send({
       id: ref.id,
       data: newData
     });
@@ -680,7 +679,7 @@ $ firebase deploy
 ```js
 // Item.jsx
 const deleteDataOnFirestore = async (collectionName, documentId) => {
-  const requestUrl = 'https://us-central1-react-firebase3.cloudfunctions.net/api/';
+  const requestUrl = 'Node.jsで設定したエンドポイントのURL';
   const removedData = await axios.delete(`${requestUrl}${documentId}`);
   getTodosFromFirestore();
   return removedData;
@@ -708,7 +707,7 @@ app.delete('/:id', async (req, res, next) => {
       .collection('todos')
       .doc(id)
       .delete();
-    res.json({
+    res.send({
       id: ref.id,
     });
   } catch (e) {
