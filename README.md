@@ -300,6 +300,17 @@ module.exports = admin;
 
 ---
 
+- 今回作成するエンドポイントは以下の4つ．
+
+| Method | URI          | 処理内容                |
+| ----   | ----         | ----                  |
+| GET    | /            | 全ドキュメントの取得      |
+| POST   | /            | 新規ドキュメントの登録    |
+| PUT    | /:documentId | 指定したドキュメントの更新 |
+| DELETE | /:documentId | 指定したドキュメントの削除 |
+
+---
+
 - まず，`index.js`に下記のようにCRUDのエンドポイント4つを作成する．
 - firestore関連のモジュール読み込みも行う．
 
@@ -733,12 +744,15 @@ $ firebase deploy
 
 ---
 
+## これでCRUD処理完成！！
+
+---
 
 ## まとめ
 
-- Fiebase関連はCloudFunctionsに任せる！
-- Reactはhttpリクエスト送るだけ！
-- React側のFirebase関連のファイルは削除してOK！
+- Firebase関連はCloudFunctionsに任せる！
+- Reactはhttpリクエスト送るだけのシンプルな実装！
+- React側にFirebase関連の情報は置かないでOK！
 
 ---
 
