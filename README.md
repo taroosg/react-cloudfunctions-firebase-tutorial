@@ -574,7 +574,13 @@ app.post("/", async (req, res, next) => {
     if (!postData) {
       throw new Error("Data is blank");
     }
-    const ref = await db.collection("todos").add(postData);
+    const newData = {
+      ...postData,
+      ...{
+        limit: admin.firestore.Timestamp.fromDate(new Date(postData.limit)),
+      },
+    };
+    const ref = await db.collection("todos").add(newData);
     res.send({
       id: ref.id,
       data: postData,
